@@ -12,7 +12,7 @@ public class UserGroupAccount {
     @ManyToOne
     private User user;
     @ManyToOne
-    private UserGroups userGroups;
+    private UserGroup userGroup;
     private Integer betPoints;
     @OneToMany(targetEntity = ScoreType.class, mappedBy = "userGroupAccountList")
     private List<ScoreType> ScoreTypes=new ArrayList<>();
@@ -36,12 +36,12 @@ public class UserGroupAccount {
         this.user = user;
     }
 
-    public UserGroups getUserGroup() {
-        return userGroups;
+    public UserGroup getUserGroup() {
+        return userGroup;
     }
 
-    public void setUserGroup(UserGroups userGroups) {
-        this.userGroups = userGroups;
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 
     public Integer getBetPoints() {
