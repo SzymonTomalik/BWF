@@ -14,7 +14,7 @@ public class UserGroups {
     private Long id;
 //    @UniqueElements
     private String name;
-    @OneToMany(mappedBy = "userGroups")
+    @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "userGroups")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
 
     public UserGroups(@UniqueElements String name, List<UserGroupAccount> usersGroupAccountList) {

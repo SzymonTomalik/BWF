@@ -16,12 +16,12 @@ public class User {
     private Long id;
     @NotBlank(message = "Login is mandatory")
     private String login;
-        @Email
+    @Email
     @NotBlank(message = "Email is mandatory")
     private String email;
     @NotBlank(message = "Password is mandatory")
-    private String password= BCrypt.hashpw("",BCrypt.gensalt());
-    @OneToMany(mappedBy = "user")
+    private String password = BCrypt.hashpw("", BCrypt.gensalt());
+    @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "user")
     private List<UserGroupAccount> userGroupAccount;
 
     public User() {

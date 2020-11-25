@@ -14,7 +14,7 @@ public class UserGroupAccount {
     @ManyToOne
     private UserGroups userGroups;
     private Integer betPoints;
-    @OneToMany(mappedBy = "userGroupAccountList")
+    @OneToMany(targetEntity = ScoreType.class, mappedBy = "userGroupAccountList")
     private List<ScoreType> ScoreTypes=new ArrayList<>();
 
     public UserGroupAccount() {
