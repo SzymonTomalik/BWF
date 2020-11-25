@@ -15,8 +15,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Login is mandatory")
+//    @UniqueElements
     private String login;
     @Email
+//    @UniqueElements
     @NotBlank(message = "Email is mandatory")
     private String email;
     @NotBlank(message = "Password is mandatory")
@@ -62,7 +64,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public List<pl.coderslab.BWF.entity.UserGroupAccount> getUserGroupAccount() {
