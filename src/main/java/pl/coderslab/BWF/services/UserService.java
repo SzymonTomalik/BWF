@@ -18,6 +18,12 @@ public class UserService {
     public List<User> showUsers() {
         return userRepository.findAll();
     }
+    public void getUser(Long id) {
+        userRepository.findById(id);
+    }
+    public List<User>  showUserFromGroup(Long id) {
+        return userRepository.findUsersByUserGroup(id);
+    }
 
     public void addUser(User user) {
         userRepository.save(user);

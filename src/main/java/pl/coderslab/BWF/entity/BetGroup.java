@@ -8,21 +8,21 @@ import java.util.List;
 
 @Entity
 @Table(name = "user_groups")
-public class UserGroup {
+public class BetGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 //    @UniqueElements
     private String name;
-    @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "userGroup")
+    @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "betGroup")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
 
-    public UserGroup(String name, List<UserGroupAccount> usersGroupAccountList) {
+    public BetGroup(String name, List<UserGroupAccount> usersGroupAccountList) {
         this.name = name;
         this.userGroupAccountList = usersGroupAccountList;
     }
 
-    public UserGroup() {
+    public BetGroup() {
 
     }
 
@@ -40,5 +40,16 @@ public class UserGroup {
 
     public void setUserGroupAccountList(List<UserGroupAccount> userGroupAccountList) {
         this.userGroupAccountList = userGroupAccountList;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "UserGroup{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
