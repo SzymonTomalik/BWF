@@ -1,18 +1,16 @@
 package pl.coderslab.BWF.entity;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user_groups")
+@Table(name = "bet_groups")
 public class BetGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @UniqueElements
+    //    @UniqueElements
     private String name;
     @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "betGroup")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
@@ -48,8 +46,9 @@ public class BetGroup {
 
     @Override
     public String toString() {
-        return "UserGroup{" +
+        return "BetGroup{" +
                 "name='" + name + '\'' +
-                '}';
+                '}' +
+                '\n';
     }
 }

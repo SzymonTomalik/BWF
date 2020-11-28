@@ -13,7 +13,7 @@ public class ScoreType {
     private String typedResult;
 
     @ManyToOne
-    private UserGroupAccount userGroupAccountList;
+    private UserGroupAccount userAccount;
 
     @ManyToOne
     private SoccerMatch soccerMatch;
@@ -34,8 +34,8 @@ public class ScoreType {
         return typedResult;
     }
 
-    public UserGroupAccount getUserGroupAccountList() {
-        return userGroupAccountList;
+    public UserGroupAccount getUserAccount() {
+        return userAccount;
     }
 
     public SoccerMatch getMatch() {
@@ -46,8 +46,8 @@ public class ScoreType {
         this.typedResult = result;
     }
 
-    public void setUserGroupAccountList(UserGroupAccount userGroupAccount) {
-        this.userGroupAccountList = userGroupAccount;
+    public void setUserAccount(UserGroupAccount userGroupAccount) {
+        this.userAccount = userGroupAccount;
     }
 
     public void setMatch(SoccerMatch soccerMatch) {
