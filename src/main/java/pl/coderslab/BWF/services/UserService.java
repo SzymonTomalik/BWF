@@ -18,22 +18,27 @@ public class UserService {
     public List<User> showUsers() {
         return userRepository.findAll();
     }
-    public void getUser(Long id) {
-        userRepository.findById(id);
+
+    public User getUser(Long id) {
+        return userRepository.findById(id).get();
     }
-    public List<User>  showUserFromGroup(Long id) {
-        return userRepository.findUsersByUserGroup(id);
+
+    public List<User> showUserFromGroup(Long id) {
+        return userRepository.findUsersByBetGroup(id);
     }
 
     public void addUser(User user) {
         userRepository.save(user);
     }
+
     public void updateUser(User user) {
         userRepository.save(user);
     }
+
     public Optional<User> get(Long id) {
         return userRepository.findById(id);
     }
+
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
