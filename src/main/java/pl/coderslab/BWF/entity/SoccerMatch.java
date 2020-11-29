@@ -1,76 +1,45 @@
 package pl.coderslab.BWF.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "soccer_matches")
+@Getter
+@Setter
 public class SoccerMatch {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String homeTeam;
-
-    private String awayTeam;
-
+    private String stage;
+    private String group;
     private String matchResult;
 
-    private String winner;
+    private int homeTeamId;
+    private String homeTeam;
+    private int homeTeamScore;
 
+    private int awayTeamId;
+    private String awayTeam;
+    private int awayTeamScore;
 
-    private String MatchDate;
-
-    public SoccerMatch(String homeTeam, String awayTeam, String MatchDate) {
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
-        this.MatchDate = MatchDate;
-    }
+    private String matchDate;
 
     public SoccerMatch() {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getHomeTeam() {
-        return homeTeam;
-    }
-
-    public String getAwayTeam() {
-        return awayTeam;
-    }
-
-    public String getMatchResult() {
-        return matchResult;
-    }
-
-    public String getWinner() {
-        return winner;
-    }
-
-    public String getMatchDate() {
-        return MatchDate;
-    }
-
-    public void setMatchResult(String result) {
-        this.matchResult = result;
-    }
-
-    public void setWinner(String winner) {
-        this.winner = winner;
-    }
-
     @Override
     public String toString() {
-        return "Match{" +
+        return "SoccerMatch{" +
                 "id=" + id +
                 ", homeTeam='" + homeTeam + '\'' +
                 ", awayTeam='" + awayTeam + '\'' +
-                ", result='" + matchResult + '\'' +
-                ", winner='" + winner + '\'' +
-                ", utcDate='" + MatchDate + '\'' +
+                ", matchResult='" + matchResult + '\'' +
+                ", matchDate='" + matchDate + '\'' +
                 '}';
     }
+
+
 }
