@@ -11,9 +11,12 @@ import javax.persistence.*;
 @Setter
 public class SoccerMatch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private Long matchId;
     private String stage;
-    private String group;
+    private String competitionGroup;
     private String matchResult;
 
     private int homeTeamId;
