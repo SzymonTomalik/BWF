@@ -91,6 +91,7 @@ public class TestController {
     }
 
     @GetMapping("/add/user/{userId}/group/{betGroupId}")
+    @ResponseBody
     public String addUserToBetGroup(@PathVariable Long userId, @PathVariable Long betGroupId) {
         User user = userService.getUser(userId);
         BetGroup betGroup = betGroupService.getBetGroup(betGroupId);

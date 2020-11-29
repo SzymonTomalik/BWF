@@ -10,7 +10,7 @@ public class BetGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //    @UniqueElements
+    @Column(unique = true)
     private String name;
     @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "betGroup")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
