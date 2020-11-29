@@ -1,6 +1,8 @@
 # BWF
 Bet With Friends - my final project in CodersLab programming school.
 
+status - in progress
+
 It will be an application that will allow you to create groups of users who compete for the title of the best football match tipster.
 
 The application will use an external Football-Data api (https://www.football-data.org)
