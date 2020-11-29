@@ -1,5 +1,6 @@
 package pl.coderslab.BWF.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +10,10 @@ import javax.persistence.*;
 @Table(name = "soccer_matches")
 @Getter
 @Setter
+@Builder
 public class SoccerMatch {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long matchId;
     private String stage;
     private String competitionGroup;
     private String matchResult;
@@ -31,6 +30,20 @@ public class SoccerMatch {
 
     public SoccerMatch() {
 
+    }
+
+    public SoccerMatch(Long id, String stage, String competitionGroup, String matchResult, int homeTeamId, String homeTeam, int homeTeamScore, int awayTeamId, String awayTeam, int awayTeamScore, String matchDate) {
+        this.id = id;
+        this.stage = stage;
+        this.competitionGroup = competitionGroup;
+        this.matchResult = matchResult;
+        this.homeTeamId = homeTeamId;
+        this.homeTeam = homeTeam;
+        this.homeTeamScore = homeTeamScore;
+        this.awayTeamId = awayTeamId;
+        this.awayTeam = awayTeam;
+        this.awayTeamScore = awayTeamScore;
+        this.matchDate = matchDate;
     }
 
     @Override
