@@ -1,13 +1,16 @@
 package pl.coderslab.BWF.entity;
 
+import lombok.Getter;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
+@Getter
 @Table(name = "users")
 public class User {
 
@@ -16,6 +19,7 @@ public class User {
     private Long id;
     @NotBlank(message = "Login is mandatory")
     @Column(unique = true)
+    @Size(max = 40)
     private String login;
     @Email
     @Column(unique = true)
@@ -35,40 +39,20 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public void setLogin(String login) {
         this.login = login;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-    }
-
-    public List<pl.coderslab.BWF.entity.UserGroupAccount> getUserGroupAccount() {
-        return userGroupAccount;
     }
 
     public void setUserGroupAccount(List<pl.coderslab.BWF.entity.UserGroupAccount> userGroupAccount) {

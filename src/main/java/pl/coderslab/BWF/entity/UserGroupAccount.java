@@ -1,9 +1,13 @@
 package pl.coderslab.BWF.entity;
+
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @Table(name = "user_group_accounts")
 public class UserGroupAccount {
     @Id
@@ -15,45 +19,24 @@ public class UserGroupAccount {
     private BetGroup betGroup;
     private Integer betsPoints;
     @OneToMany(targetEntity = ScoreType.class, mappedBy = "userAccount")
-    private List<ScoreType> ScoreTypes=new ArrayList<>();
+    private List<ScoreType> ScoreTypes = new ArrayList<>();
 
-    public UserGroupAccount() {
-    }
-
-    public Long getId() {
-        return id;
-    }
+    public UserGroupAccount() {}
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public BetGroup getUserGroup() {
-        return betGroup;
-    }
-
     public void setBetGroup(BetGroup betGroup) {
         this.betGroup = betGroup;
     }
 
-    public Integer getBetsPoints() {
-        return betsPoints;
-    }
-
     public void setBetsPoints(Integer betPoints) {
         this.betsPoints = betPoints;
-    }
-
-    public List<ScoreType> getScoreTypes() {
-        return ScoreTypes;
     }
 
     public void setScoreTypes(List<ScoreType> scoreTypes) {

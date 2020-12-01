@@ -1,6 +1,7 @@
 package pl.coderslab.BWF.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class BetGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
+    @Size(max = 80)
     private String name;
     @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "betGroup")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
