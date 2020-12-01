@@ -1,11 +1,14 @@
 package pl.coderslab.BWF.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @Table(name = "bet_groups")
 public class BetGroup {
     @Id
@@ -30,16 +33,8 @@ public class BetGroup {
         this.name = name;
     }
 
-    public List<UserGroupAccount> getUserGroupAccountList() {
-        return userGroupAccountList;
-    }
-
     public void setUserGroupAccountList(List<UserGroupAccount> userGroupAccountList) {
         this.userGroupAccountList = userGroupAccountList;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     @Override
