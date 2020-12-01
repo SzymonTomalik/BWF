@@ -1,5 +1,7 @@
 package pl.coderslab.BWF.services;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.coderslab.BWF.entity.User;
 import pl.coderslab.BWF.repository.UserRepository;
@@ -8,12 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public List<User> showUsers() {
         return userRepository.findAll();

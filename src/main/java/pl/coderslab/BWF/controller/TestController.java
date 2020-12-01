@@ -1,5 +1,6 @@
 package pl.coderslab.BWF.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,17 +13,12 @@ import pl.coderslab.BWF.services.UserGroupAccountService;
 import pl.coderslab.BWF.services.UserService;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/test")
 public class TestController {
     private final UserService userService;
     private final BetGroupService betGroupService;
     private final UserGroupAccountService userGroupAccountService;
-
-    public TestController(UserService userService, BetGroupService betGroupService, UserGroupAccountService userGroupAccountService) {
-        this.userService = userService;
-        this.betGroupService = betGroupService;
-        this.userGroupAccountService = userGroupAccountService;
-    }
 
     //dodawanie usera
     @GetMapping("/add")

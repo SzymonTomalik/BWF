@@ -10,8 +10,9 @@ import java.util.List;
 @Repository
 public interface SoccerMatchRepository extends JpaRepository<SoccerMatch, Long> {
 
-
-    SoccerMatchConverter soccerMatchConverter = new SoccerMatchConverter(new MatchesClient());
-    List<SoccerMatch> soccerMatchList = soccerMatchConverter.convertDtoToMatchEntity(soccerMatchConverter.getDtoMatches());
+    public static List<SoccerMatch> getSoccerMatchList() {
+        SoccerMatchConverter soccerMatchConverter = new SoccerMatchConverter(new MatchesClient());
+        return soccerMatchConverter.convertDtoToMatchEntity(soccerMatchConverter.getDtoMatches());
+    }
 
 }

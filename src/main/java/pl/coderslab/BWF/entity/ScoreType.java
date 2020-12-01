@@ -1,7 +1,13 @@
 package pl.coderslab.BWF.entity;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "score_types")
 public class ScoreType {
@@ -10,7 +16,11 @@ public class ScoreType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String typedResult;
+    @PositiveOrZero
+    private int typedHomeTeamResult;
+    @PositiveOrZero
+    private int typedAwayTeamResult;
+    private int points=0;
 
     @ManyToOne
     private UserGroupAccount userAccount;
@@ -18,52 +28,23 @@ public class ScoreType {
     @ManyToOne
     private SoccerMatch soccerMatch;
 
-    public ScoreType(String typedResult, SoccerMatch soccerMatch) {
-        this.typedResult = typedResult;
+    public ScoreType(@PositiveOrZero int typedHomeTeamResult, @PositiveOrZero int typedAwayTeamResult, SoccerMatch soccerMatch) {
+        this.typedHomeTeamResult = typedHomeTeamResult;
+        this.typedAwayTeamResult = typedAwayTeamResult;
         this.soccerMatch = soccerMatch;
     }
 
     public ScoreType() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTypedResult() {
-        return typedResult;
-    }
-
-    public UserGroupAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public SoccerMatch getMatch() {
-        return soccerMatch;
-    }
-
-    public void setTypedResult(String result) {
-        this.typedResult = result;
-    }
-
-    public void setUserAccount(UserGroupAccount userGroupAccount) {
-        this.userAccount = userGroupAccount;
-    }
-
-    public void setMatch(SoccerMatch soccerMatch) {
-        this.soccerMatch = soccerMatch;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return "ScoreType{" +
-                "id=" + id +
-                ", result='" + typedResult + '\'' +
-                ", match=" + soccerMatch +
+                "typedHomeTeamResult=" + typedHomeTeamResult +
+                ", typedAwayTeamResult=" + typedAwayTeamResult +
+                ", userAccount=" + userAccount +
+                ", points=" + points +
+                ", soccerMatch=" + soccerMatch +
                 '}';
     }
 }
