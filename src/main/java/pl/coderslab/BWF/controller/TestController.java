@@ -86,6 +86,7 @@ public class TestController {
         return userService.showUserFromGroup(id).toString();
     }
 
+    //dodaj uzytkownika do grupy
     @GetMapping("/add/user/{userId}/group/{betGroupId}")
     @ResponseBody
     public String addUserToBetGroup(@PathVariable Long userId, @PathVariable Long betGroupId) {
@@ -94,7 +95,5 @@ public class TestController {
         userGroupAccountService.addUserToBetGroup(user, betGroup);
         String added=" was added to ";
         return user.getLogin() + added + betGroup.getName();
-
     }
-
 }
