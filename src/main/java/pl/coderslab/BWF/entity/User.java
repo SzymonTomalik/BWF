@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -42,7 +41,7 @@ public class User implements UserDetails {
     public User(@NotBlank(message = "Login is mandatory") String login, @Email @NotBlank(message = "Email is mandatory") String email, @NotBlank(message = "Password is mandatory") String password) {
         this.login = login;
         this.email = email;
-        this.password = password;
+        this.password =password;
     }
 
     public void setId(Long id) {
@@ -76,6 +75,7 @@ public class User implements UserDetails {
                 '}';
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("USER"));
@@ -105,5 +105,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 }
