@@ -20,7 +20,7 @@ public class BetGroup {
     @Size(min=4, max = 30, message = "Nazwa grupy musi posiadać od {min} do {max} znaków")
     private String name="";
     @NotBlank(message = "Hasło grupy nie może być puste")
-    private String groupPassword=BCrypt.hashpw("",BCrypt.gensalt());
+    private String groupPassword;
     @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "betGroup")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
 
