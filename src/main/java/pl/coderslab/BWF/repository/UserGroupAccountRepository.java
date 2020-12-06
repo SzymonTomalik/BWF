@@ -5,10 +5,14 @@ import org.springframework.stereotype.Repository;
 import pl.coderslab.BWF.entity.BetGroup;
 import pl.coderslab.BWF.entity.User;
 import pl.coderslab.BWF.entity.UserGroupAccount;
+
+import java.util.List;
+
 @Repository
 public interface UserGroupAccountRepository extends JpaRepository<UserGroupAccount, Long> {
     public void deleteUserGroupAccountByUserAndBetGroup(User user, BetGroup betGroup);
     public UserGroupAccount findUserGroupAccountByUserAndBetGroup(Long userId, Long betGroupId);
     public UserGroupAccount findUserGroupAccountByUserId(Long userId);
+    public List<UserGroupAccount>findUserGroupAccountByBetGroupId(Long betGroup_id);
 }
 
