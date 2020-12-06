@@ -1,8 +1,10 @@
 package pl.coderslab.BWF.entity;
 
 import lombok.Getter;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,26 +17,28 @@ public class BetGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    @Size(max = 80)
-    private String name;
+    @Size(min=4, max = 30, message = "Nazwa grupy musi posiadać od {min} do {max} znaków")
+    private String name="";
+    @NotBlank(message = "Hasło grupy nie może być puste")
+    private String groupPassword;
     @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "betGroup")
     private List<UserGroupAccount> userGroupAccountList = new ArrayList<>();
 
-    public BetGroup(String name, List<UserGroupAccount> usersGroupAccountList) {
+    public BetGroup(@Size(min = 5, max = 50, message = "Nazwa grupy musi posiadać od {min} do {max} znaków") String name, String groupPassword) {
         this.name = name;
-        this.userGroupAccountList = usersGroupAccountList;
+        this.groupPassword = groupPassword;
     }
 
     public BetGroup() {
 
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGroupPassword(String groupPassword) {
+        this.groupPassword = BCrypt.hashpw(groupPassword, BCrypt.gensalt());
     }
 
-    public void setUserGroupAccountList(List<UserGroupAccount> userGroupAccountList) {
-        this.userGroupAccountList = userGroupAccountList;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
