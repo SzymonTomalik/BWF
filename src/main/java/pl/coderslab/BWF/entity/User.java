@@ -5,14 +5,13 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.coderslab.BWF.services.UserGroupAccountService;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
@@ -71,10 +70,8 @@ public class User implements UserDetails {
                 ", login='" + login + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", userGroupAccount=" + userGroupAccount +
                 '}';
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -106,5 +103,16 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return id.equals(user.id) && login.equals(user.login) && email.equals(user.email) && password.equals(user.password);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, email, password);
+    }
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -17,11 +18,12 @@ public class UserGroupAccount {
     private User user;
     @ManyToOne
     private BetGroup betGroup;
-    private Integer betsPoints;
+    private Integer betsPoints = 0;
     @OneToMany(targetEntity = ScoreType.class, mappedBy = "userAccount")
     private List<ScoreType> ScoreTypes = new ArrayList<>();
 
-    public UserGroupAccount() {}
+    public UserGroupAccount() {
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -46,8 +48,22 @@ public class UserGroupAccount {
     @Override
     public String toString() {
         return "UserGroupAccount{" +
-                "userGroup=" + betGroup +
-                ", betPoints=" + betsPoints +
+                "user=" + user +
+                ", betGroup=" + betGroup +
+                ", betsPoints=" + betsPoints +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserGroupAccount)) return false;
+        UserGroupAccount that = (UserGroupAccount) o;
+        return user.equals(that.user) && betGroup.equals(that.betGroup);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, betGroup);
     }
 }
