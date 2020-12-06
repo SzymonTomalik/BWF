@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.coderslab.BWF.entity.User;
+import pl.coderslab.BWF.entity.UserGroupAccount;
 import pl.coderslab.BWF.repository.UserRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +28,9 @@ public class UserService {
 
     public List<User> showUserFromGroup(Long id) {
         return userRepository.findUsersByBetGroup(id);
+    }
+    public List<User> showUserFromGroupSortedByPoints(Long id) {
+        return userRepository.findUsersByBetGroupsOrderByBetPoints(id);
     }
 
     public void addUser(User user) {
