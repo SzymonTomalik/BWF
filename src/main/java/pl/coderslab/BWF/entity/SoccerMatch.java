@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "soccer_matches")
@@ -57,5 +58,16 @@ public class SoccerMatch {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SoccerMatch)) return false;
+        SoccerMatch that = (SoccerMatch) o;
+        return homeTeamId == that.homeTeamId && homeTeamScore == that.homeTeamScore && awayTeamId == that.awayTeamId && awayTeamScore == that.awayTeamScore && id.equals(that.id) && Objects.equals(stage, that.stage) && Objects.equals(competitionGroup, that.competitionGroup) && Objects.equals(matchResult, that.matchResult) && homeTeam.equals(that.homeTeam) && awayTeam.equals(that.awayTeam) && matchDate.equals(that.matchDate);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, stage, competitionGroup, matchResult, homeTeamId, homeTeam, homeTeamScore, awayTeamId, awayTeam, awayTeamScore, matchDate);
+    }
 }
