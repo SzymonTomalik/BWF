@@ -1,24 +1,40 @@
 package pl.coderslab.BWF.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.BWF.entity.BetGroup;
+import pl.coderslab.BWF.entity.SoccerMatch;
 import pl.coderslab.BWF.entity.User;
+import pl.coderslab.BWF.repository.SoccerMatchRepository;
 import pl.coderslab.BWF.services.BetGroupService;
+import pl.coderslab.BWF.services.MatchService;
 import pl.coderslab.BWF.services.UserGroupAccountService;
 import pl.coderslab.BWF.services.UserService;
 
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/test")
 public class TestController {
     private final UserService userService;
     private final BetGroupService betGroupService;
     private final UserGroupAccountService userGroupAccountService;
+    private final MatchService matchService;
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String checkBetHour(){
+        SoccerMatch match = matchService.getMatch(310554);
+        log.info("rozpoczęcie meczu "+match.getMatchDate());
+        log.info("ostatnie zakłady "+matchService.getBetMatchDate(match));
+        return match.toString();
+
+    }
 
     //dodawanie usera
     @GetMapping("/add")
