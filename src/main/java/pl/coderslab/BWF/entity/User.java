@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private String email;
     @NotBlank(message = "Password is mandatory")
     private String password = BCrypt.hashpw("", BCrypt.gensalt());
-    @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "user")
+    @OneToMany(targetEntity = UserGroupAccount.class, mappedBy = "user", fetch=FetchType.EAGER)
     private List<UserGroupAccount> userGroupAccount;
 
     public User() {

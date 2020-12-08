@@ -14,6 +14,8 @@ public interface UserGroupAccountRepository extends JpaRepository<UserGroupAccou
     public UserGroupAccount findUserGroupAccountByUserAndBetGroup(Long userId, Long betGroupId);
     public UserGroupAccount findUserGroupAccountByUserId(Long userId);
     public List<UserGroupAccount>findAllByBetGroupId(Long betGroupId);
+    public List<UserGroupAccount>findAllByUserId(Long userId);
+
 
 }
 
