@@ -48,4 +48,10 @@ public class ScoreType {
                 ", soccerMatch=" + soccerMatch +
                 '}';
     }
+
+
+
+    public String getSoccerMatchId() {
+        return this.soccerMatch.getId().toString();
+    }
 }
