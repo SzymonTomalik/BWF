@@ -1,0 +1,1 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><html><head>    <title>no matches available</title></head><body><h3 style="color: red">Aktualnie nie ma żadnych meczy do wytypowania</h3><button><a href="/">Powrót do menu</a> </button></body></html>
