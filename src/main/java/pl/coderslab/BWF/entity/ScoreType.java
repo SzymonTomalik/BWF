@@ -2,10 +2,12 @@ package pl.coderslab.BWF.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Collection;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -29,10 +31,14 @@ public class ScoreType {
     @ManyToOne
     private SoccerMatch soccerMatch;
 
-    public ScoreType(@PositiveOrZero int typedHomeTeamResult, @PositiveOrZero int typedAwayTeamResult, SoccerMatch soccerMatch) {
+    private DateTime createdDate=new DateTime();
+    private DateTime changedDate=new DateTime();
+
+    public ScoreType(@PositiveOrZero int typedHomeTeamResult, @PositiveOrZero int typedAwayTeamResult, SoccerMatch soccerMatch, UserGroupAccount userAccount) {
         this.typedHomeTeamResult = typedHomeTeamResult;
         this.typedAwayTeamResult = typedAwayTeamResult;
         this.soccerMatch = soccerMatch;
+        this.userAccount = userAccount;
     }
 
     public ScoreType() {
@@ -41,17 +47,31 @@ public class ScoreType {
     @Override
     public String toString() {
         return "ScoreType{" +
-                "typedHomeTeamResult=" + typedHomeTeamResult +
+                "id=" + id +
+                ", typedHomeTeamResult=" + typedHomeTeamResult +
                 ", typedAwayTeamResult=" + typedAwayTeamResult +
-                ", userAccount=" + userAccount +
                 ", points=" + points +
+                ", userAccount=" + userAccount +
                 ", soccerMatch=" + soccerMatch +
+                ", created=" + createdDate +
+                ", isTypeChanged=" + changedDate +
                 '}';
     }
 
+    public Long getSoccerMatchId() {
+        return this.soccerMatch.getId();
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ScoreType)) return false;
+        ScoreType scoreType = (ScoreType) o;
+        return typedHomeTeamResult == scoreType.typedHomeTeamResult && typedAwayTeamResult == scoreType.typedAwayTeamResult && userAccount.equals(scoreType.userAccount) && soccerMatch.equals(scoreType.soccerMatch);
+    }
 
-    public String getSoccerMatchId() {
-        return this.soccerMatch.getId().toString();
+    @Override
+    public int hashCode() {
+        return Objects.hash(typedHomeTeamResult, typedAwayTeamResult, userAccount, soccerMatch);
     }
 }
