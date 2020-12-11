@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface UserGroupAccountRepository extends JpaRepository<UserGroupAccount, Long> {
     public void deleteUserGroupAccountByUserAndBetGroup(User user, BetGroup betGroup);
-    public UserGroupAccount findUserGroupAccountByUserAndBetGroup(Long userId, Long betGroupId);
+    public UserGroupAccount findUserGroupAccountByUserAndBetGroup(User user, Long betGroupId);
+    public UserGroupAccount findUserGroupAccountByUserIdAndBetGroupId(Long userId, Long betGroupId);
     public UserGroupAccount findUserGroupAccountByUserId(Long userId);
     public List<UserGroupAccount>findAllByBetGroupId(Long betGroupId);
     public List<UserGroupAccount>findAllByUserId(Long userId);

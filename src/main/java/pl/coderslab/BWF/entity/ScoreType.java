@@ -23,7 +23,7 @@ public class ScoreType {
     private int typedHomeTeamResult;
     @PositiveOrZero
     private int typedAwayTeamResult;
-    private int points=0;
+    private int points;
 
     @ManyToOne
     private UserGroupAccount userAccount;
