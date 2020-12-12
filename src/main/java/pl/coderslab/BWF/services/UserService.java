@@ -6,10 +6,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.BWF.entity.User;
-import pl.coderslab.BWF.entity.UserGroupAccount;
+import pl.coderslab.BWF.model.RegistrationForm;
 import pl.coderslab.BWF.repository.UserRepository;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +38,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(User user) {
-        userRepository.save(user);
+    public void updateUser(User userToEdit, RegistrationForm editedUser) {
+        userToEdit.setLogin(editedUser.getLogin());
+        userToEdit.setEmail(editedUser.getEmail());
+        userToEdit.setPassword(editedUser.getPass1());
+        userRepository.save(userToEdit);
+        log.info("Users data was changed successfully");
     }
 
     public Optional<User> get(Long id) {
