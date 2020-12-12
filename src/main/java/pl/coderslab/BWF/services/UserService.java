@@ -55,5 +55,12 @@ public class UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (User) authentication.getPrincipal();
     }
+    public boolean isLogged(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info(authentication.toString());
+
+        return !authentication.getPrincipal().equals("anonymousUser");
+
+    }
 
 }
