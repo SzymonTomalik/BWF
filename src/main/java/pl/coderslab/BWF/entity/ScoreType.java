@@ -3,10 +3,11 @@ package pl.coderslab.BWF.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.joda.time.DateTime;
+import pl.coderslab.BWF.converter.DateConverter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.Collection;
 import java.util.Objects;
 
 @Getter
@@ -31,8 +32,8 @@ public class ScoreType {
     @ManyToOne
     private SoccerMatch soccerMatch;
 
-    private DateTime createdDate=new DateTime();
-    private DateTime changedDate=new DateTime();
+    private String createdDate = DateConverter.getDateNow();
+    private String changedDate = DateConverter.getDateNow();
 
     public ScoreType(@PositiveOrZero int typedHomeTeamResult, @PositiveOrZero int typedAwayTeamResult, SoccerMatch soccerMatch, UserGroupAccount userAccount) {
         this.typedHomeTeamResult = typedHomeTeamResult;
@@ -67,11 +68,11 @@ public class ScoreType {
         if (this == o) return true;
         if (!(o instanceof ScoreType)) return false;
         ScoreType scoreType = (ScoreType) o;
-        return typedHomeTeamResult == scoreType.typedHomeTeamResult && typedAwayTeamResult == scoreType.typedAwayTeamResult && userAccount.equals(scoreType.userAccount) && soccerMatch.equals(scoreType.soccerMatch);
+        return userAccount.equals(scoreType.userAccount) && soccerMatch.equals(scoreType.soccerMatch);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typedHomeTeamResult, typedAwayTeamResult, userAccount, soccerMatch);
+        return Objects.hash(userAccount, soccerMatch);
     }
 }
