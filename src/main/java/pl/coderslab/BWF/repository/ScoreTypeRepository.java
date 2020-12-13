@@ -19,4 +19,9 @@ public interface ScoreTypeRepository extends JpaRepository<ScoreType, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM score_types JOIN user_group_accounts uga on score_types.user_account_id = uga.id JOIN bet_groups bg on bg.id = uga.bet_group_id WHERE bet_group_id=?")
     public List<ScoreType> findAllByBetGroupId(Long betGroupId);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM score_types JOIN user_group_accounts uga on score_types.user_account_id = uga.id JOIN bet_groups bg on bg.id = uga.bet_group_id WHERE bet_group_id=? AND user_id=?;")
+    public List<ScoreType> findAllByUserIdAndBetGroupId(Long userId, Long betGroupId);
+
+
 }
