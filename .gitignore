@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**src/main/java/pl/coderslab/BWF/webClient/matches/ApiTokens.java
+!**/src/main/java/pl/coderslab/BWF/webClient/matches/ApiTokens.java
 
 ### STS ###
 .apt_generated
