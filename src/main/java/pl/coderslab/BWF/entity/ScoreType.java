@@ -2,11 +2,9 @@ package pl.coderslab.BWF.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joda.time.DateTime;
 import pl.coderslab.BWF.converter.DateConverter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Objects;
 
